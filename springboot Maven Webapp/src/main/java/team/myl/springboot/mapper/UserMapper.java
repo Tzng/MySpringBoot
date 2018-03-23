@@ -17,5 +17,7 @@ public interface UserMapper {
 
 	int updateByPrimaryKey(User record);
 
+	int deleteByUserName(String userName);
+
 	List<User> selectAllUser();
 }

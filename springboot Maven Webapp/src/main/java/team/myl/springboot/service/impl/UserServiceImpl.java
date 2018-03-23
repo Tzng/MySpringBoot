@@ -39,4 +39,31 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectAllUser();
 	}
 
+	@Override
+	public int deletUser(String userName) {
+		int flag = 0;
+		try {
+			flag = userMapper.deleteByUserName(userName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+	@Override
+	public User selectByPrimaryKey(int userId) {
+		User user = userMapper.selectByPrimaryKey(userId);
+		return user;
+	}
+
+	@Override
+	public int updateByPrimaryKey(User user) {
+		int flag = 0;
+		try {
+			flag = userMapper.updateByPrimaryKey(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
 }

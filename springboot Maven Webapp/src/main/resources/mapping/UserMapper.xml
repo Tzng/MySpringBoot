@@ -25,6 +25,10 @@
     delete from t_user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByUserName" parameterType="java.lang.String">
+    delete from t_user
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </delete>  
   <insert id="insert" parameterType="team.myl.springboot.model.User">
     insert into t_user (user_id, user_name, password, 
       phone)

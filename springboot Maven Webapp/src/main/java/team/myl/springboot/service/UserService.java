@@ -10,4 +10,9 @@ public interface UserService {
 
 	List<User> findAllUser(int pageNum, int pageSize);
 
+	int deletUser(String userName);
+
+	User selectByPrimaryKey(int userId);
+
+	int updateByPrimaryKey(User user);
 }
