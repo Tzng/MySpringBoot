@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.bocom</groupId>
 	<artifactId>maventest</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<name>maventest</name>
@@ -137,34 +137,52 @@
 	
     <build>
         <finalName>maventest</finalName>
-        <plugins>
+	    <plugins>
+	        <plugin>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-maven-plugin</artifactId>
+	            <executions>
+	                <execution>
+	                    <goals>
+	                        <goal>repackage</goal>
+	                    </goals>
+	                </execution>
+	            </executions>
+	        </plugin>
             <!-- Spring Boot Maven插件 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin </artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中 -->
+						</goals>
+					</execution>
+				</executions>
             </plugin>
 		    <!--
 		        指定maven插件编译版本
 		        1：maven：since2.0, 默认用jdk1.3来编译，maven 3.x 貌似是默认用jdk 1.5。 
 		        2：windows默认使用GBK编码，java项目经常编码为utf8，也需要在compiler插件中指出，否则中文乱码可能会出现编译错误。 
 		     -->
-            <plugin>
+<!--             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
-            </plugin>
-            <!-- 使用maven-war-plugin 对Maven项目进行动态打包 https://segmentfault.com/a/1190000007166005 -->
+            </plugin> -->
+<!--             使用maven-war-plugin 对Maven项目进行动态打包 https://segmentfault.com/a/1190000007166005
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.2</version>
-                <!--$NO-MVN-MAN-VER$-->
+                $NO-MVN-MAN-VER$
                 <configuration>
                     <version>3.0</version>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 </project>
