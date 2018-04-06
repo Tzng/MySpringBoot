@@ -1,5 +1,7 @@
 server:
   port: 8080
+  servlet:
+    context-path: /SpringBoot
 
 spring:
     datasource:
@@ -23,9 +25,14 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    mvc: 
+      view:
+        suffix: .html
+        prefix: /
+      
 mybatis:
-  mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.winter.model
+    mapper-locations: classpath:mapping/*.xml
+    type-aliases-package: com.winter.model
 
 #pagehelper
 pagehelper:

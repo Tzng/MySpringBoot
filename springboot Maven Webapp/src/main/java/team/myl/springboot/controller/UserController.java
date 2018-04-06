@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -138,5 +139,10 @@ public class UserController {
 		System.out.println("username is:" + user.getUserName());
 		System.out.println("password is:" + user.getPassword());
 		return "{\"state\":\"OK\"}";
+	}
+
+	@GetMapping("/index")
+	public String index() {
+		return "index"; // 当浏览器输入/index时，会返回 /static/home.html的页面
 	}
 }

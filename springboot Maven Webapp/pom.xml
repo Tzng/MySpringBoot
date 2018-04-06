@@ -44,6 +44,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- 入模板引擎jar包 -->
+<!-- 		<dependency>
+		   <groupId>org.springframework.boot</groupId>
+		   <artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>     -->    
 
 		<!-- 是项目中用来处理常用的编码方法的工具类包，例如DES、SHA1、MD5、Base64，URL，Soundx等等。不仅是编码，也可用于解码。 -->
 		<dependency>
