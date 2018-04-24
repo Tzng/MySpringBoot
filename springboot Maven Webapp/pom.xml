@@ -13,7 +13,7 @@
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  	
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  	<java.version>1.8</java.version>
+  	<java.version>10</java.version>
   </properties>	
 	
 	<!-- 继承父包 -->
@@ -182,8 +182,8 @@
 <!--             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>10</source>
+                    <target>10</target>
                 </configuration>
             </plugin> -->
 <!--             使用maven-war-plugin 对Maven项目进行动态打包 https://segmentfault.com/a/1190000007166005

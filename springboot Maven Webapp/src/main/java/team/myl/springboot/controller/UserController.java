@@ -1,6 +1,7 @@
 
 package team.myl.springboot.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -43,7 +44,8 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/all/{pageNum}/{pageSize}")
-	public Object findAllUser(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+	public List<User> findAllUser(@PathVariable(value = "pageNum") int pageNum,
+			@PathVariable(value = "pageSize") int pageSize) {
 
 		return userService.findAllUser(pageNum, pageSize);
 	}
@@ -53,7 +55,7 @@ public class UserController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/delet/{userName}", produces = { "application/json;charset=UTF-8" })
-	public int deletUser(@PathVariable("userName") String userName) {
+	public int deletUser(@PathVariable(value = "userName") String userName) {
 		int flag = userService.deletUser(userName);
 		return flag;
 	}
@@ -106,7 +108,7 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/addUser2")
+	@RequestMapping(value = "/addUser2")
 	public String addUser2(HttpServletRequest request) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -121,7 +123,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping("/addUser3")
+	@RequestMapping(value = "/addUser3")
 	public String addUser3(User user) {
 		System.out.println("username is:" + user.getUserName());
 		System.out.println("password is:" + user.getPassword());

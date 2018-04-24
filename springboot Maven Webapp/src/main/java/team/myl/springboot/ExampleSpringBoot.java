@@ -11,7 +11,7 @@ import team.myl.springboot.interceptor.LogHandlerInterceptor;
 import team.myl.springboot.interceptor.MyInterceptor;
 
 @SpringBootApplication
-@MapperScan("team.myl.springboot.mapper")
+@MapperScan(value = "team.myl.springboot.mapper")
 public class ExampleSpringBoot {
 
 	public static void main(String[] args) {
