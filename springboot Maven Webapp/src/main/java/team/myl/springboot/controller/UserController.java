@@ -145,4 +145,9 @@ public class UserController {
 	public String index() {
 		return "index"; // 当浏览器输入/index时，会返回 /static/home.html的页面
 	}
+	
+	public String getUserToken(){
+		String token ="";
+		return token;
+	}
 }
