@@ -29,7 +29,15 @@ spring:
       view:
         suffix: .html
         prefix: /
-      
+        
+    thymeleaf:
+        cache: false
+        prefix: classpath:/templates/
+    #热部署生效
+    devtools:
+        restart:
+          enabled: true
+          
 mybatis:
     mapper-locations: classpath:mapping/*.xml
     type-aliases-package: com.winter.model

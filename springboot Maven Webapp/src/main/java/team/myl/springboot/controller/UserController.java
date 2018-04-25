@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import team.myl.springboot.model.User;
 import team.myl.springboot.service.UserService;
+import team.myl.springboot.util.JwtToken;
 
 /**
  * 在控制器中接收参数的方法查看这个链接 https://www.cnblogs.com/wxwBlog/p/6128882.html
@@ -25,7 +26,7 @@ import team.myl.springboot.service.UserService;
  *
  */
 @Controller
-@RequestMapping(value = "/user", produces = { "application/json;charset=UTF-8" })
+@RequestMapping(value = "/user/api", produces = { "application/json;charset=UTF-8" })
 public class UserController {
 
 	@Autowired
@@ -147,9 +148,28 @@ public class UserController {
 	public String index() {
 		return "index"; // 当浏览器输入/index时，会返回 /static/home.html的页面
 	}
-	
-	public String getUserToken(){
-		String token ="";
+
+	public String getUserToken() {
+		String token = "";
 		return token;
+	}
+
+	@GetMapping("/MyHtml")
+	public String toMyHtml() {
+		return "MyHtml"; // 当浏览器输入/index时，会返回 /static/home.html的页面
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/tzngToken")
+	public String tzngToken() throws Exception {
+		String token = JwtToken.createToken();
+		return token;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/currentUser")
+	public String getUserData() {
+		String userData = "{\"name\":\"阿拉斌\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png\",\"userid\":\"00000001\",\"notifyCount\":12}";
+		return userData;
 	}
 }
