@@ -3,17 +3,6 @@ package team.myl.springboot;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-<<<<<<< HEAD
-
-@SpringBootApplication
-@MapperScan("team.myl.springboot.mapper")
-public class ExampleSpringBoot {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ExampleSpringBoot.class, args);
-	}
-
-=======
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -50,5 +39,4 @@ public class ExampleSpringBoot {
 					.addPathPatterns("/user"); // 指定该类拦截的url
 		}
 	}
->>>>>>> branch 'master' of https://github.com/Tzng/MySpringBoot.git
 }
