@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import team.myl.springboot.mapper.UserMapper;
 import team.myl.springboot.model.User;
@@ -33,9 +35,20 @@ public class UserServiceImpl implements UserService {
 	 * 每页显示的数据条数
 	 */
 	@Override
-	public List<User> findAllUser(int pageNum, int pageSize) {
+	public PageInfo<User> findAllUser(int pageNum, int pageSize) {
 		// 将参数传给这个方法就可以实现物理分页了，非常简单。
 		PageHelper.startPage(pageNum, pageSize);
+		List<User> list = userMapper.selectAllUser();
+		PageInfo<User> pageInfo = new PageInfo<User>(list);
+		return pageInfo;
+	}
+
+	/** 设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】 */
+	@Override
+	public List<User> findAllUser2(int pageNum, int pageSize) {
+		// 将参数传给这个方法就可以实现物理分页了，非常简单。
+		PageHelper.startPage(pageNum, pageSize);
+		List<User> allItems = userMapper.selectAllUser();
 		return userMapper.selectAllUser();
 	}
 
@@ -65,5 +78,11 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		return flag;
+	}
+
+	@Override
+	public Page<User> findByPage(int pageNo, int pageSize) {
+		PageHelper.startPage(pageNo, pageSize);
+		return userMapper.findByPage();
 	}
 }

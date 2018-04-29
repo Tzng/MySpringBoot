@@ -2,6 +2,8 @@ package team.myl.springboot.mapper;
 
 import java.util.List;
 
+import com.github.pagehelper.Page;
+
 import team.myl.springboot.model.User;
 
 public interface UserMapper {
@@ -20,4 +22,6 @@ public interface UserMapper {
 	int deleteByUserName(String userName);
 
 	List<User> selectAllUser();
+
+	Page<User> findByPage();
 }

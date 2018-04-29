@@ -1,7 +1,6 @@
 
 package team.myl.springboot.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.github.pagehelper.Page;
 
 import team.myl.springboot.model.User;
 import team.myl.springboot.service.UserService;
@@ -45,10 +46,10 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/all/{pageNum}/{pageSize}")
-	public List<User> findAllUser(@PathVariable(value = "pageNum") int pageNum,
+	public Page<User> findAllUser(@PathVariable(value = "pageNum") int pageNum,
 			@PathVariable(value = "pageSize") int pageSize) {
 
-		return userService.findAllUser(pageNum, pageSize);
+		return userService.findByPage(pageNum, pageSize);
 	}
 
 	/**
@@ -172,4 +173,5 @@ public class UserController {
 		String userData = "{\"name\":\"阿拉斌\",\"avatar\":\"https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png\",\"userid\":\"00000001\",\"notifyCount\":12}";
 		return userData;
 	}
+
 }
