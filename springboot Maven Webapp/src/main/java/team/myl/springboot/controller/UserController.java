@@ -1,6 +1,7 @@
 
 package team.myl.springboot.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
@@ -14,11 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import team.myl.springboot.model.User;
 import team.myl.springboot.service.UserService;
 import team.myl.springboot.util.JwtToken;
+import team.myl.springboot.utilbean.PageBean;
 
 /**
  * 在控制器中接收参数的方法查看这个链接 https://www.cnblogs.com/wxwBlog/p/6128882.html
@@ -46,10 +51,24 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/all/{pageNum}/{pageSize}")
-	public Page<User> findAllUser(@PathVariable(value = "pageNum") int pageNum,
+	public PageInfo<User> findAllUser(@PathVariable(value = "pageNum") int pageNum,
 			@PathVariable(value = "pageSize") int pageSize) {
 
-		return userService.findByPage(pageNum, pageSize);
+		return userService.findAllUser(pageNum, pageSize);
+	}
+
+	@SuppressWarnings({ "rawtypes", "unused", "unchecked" })
+	@ResponseBody
+	@RequestMapping(value = "/all")
+	public String findAllUser2(String pageNum, String pageSize) {
+
+		Page<User> uPage = (Page) PageHelper.startPage(Integer.valueOf(pageNum), Integer.valueOf(pageSize));
+
+		List<User> uList = userService.findAllUser3();
+
+		PageBean reType = new PageBean(uList);
+
+		return JSON.toJSONString(reType);
 	}
 
 	/**

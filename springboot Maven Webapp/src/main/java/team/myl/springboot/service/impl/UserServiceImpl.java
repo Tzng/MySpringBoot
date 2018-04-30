@@ -43,6 +43,13 @@ public class UserServiceImpl implements UserService {
 		return pageInfo;
 	}
 
+	@Override
+	public List<User> findAllUser3() {
+		// 将参数传给这个方法就可以实现物理分页了，非常简单。
+		List<User> list = userMapper.selectAllUser();
+		return list;
+	}
+
 	/** 设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】 */
 	@Override
 	public List<User> findAllUser2(int pageNum, int pageSize) {

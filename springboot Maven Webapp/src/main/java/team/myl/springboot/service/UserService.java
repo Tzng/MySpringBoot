@@ -22,4 +22,6 @@ public interface UserService {
 	List<User> findAllUser2(int pageNum, int pageSize);
 
 	Page<User> findByPage(int pageNo, int pageSize);
+
+	List<User> findAllUser3();
 }
