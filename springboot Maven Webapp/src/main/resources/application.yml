@@ -29,6 +29,7 @@ spring:
       view:
         suffix: .html
         prefix: /
+      dispatch-options-request: true
         
     thymeleaf:
         cache: false
@@ -41,7 +42,7 @@ spring:
 mybatis:
     mapper-locations: classpath:mapping/*.xml
     type-aliases-package: com.winter.model
-    
+
 #pagehelper
 pagehelper:
     helperDialect: mysql

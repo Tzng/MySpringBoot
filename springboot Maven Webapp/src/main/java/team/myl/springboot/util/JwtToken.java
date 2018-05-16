@@ -11,6 +11,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import team.myl.springboot.model.SysUser;
+
 public class JwtToken {
 
 	private static final String SECRET = "h8t^$r1%qK8rvmbUm5453VR#H1sMWLTj!#neA39";
@@ -22,7 +24,7 @@ public class JwtToken {
 	 * header .withClaim("name", "zwz")// payload .withClaim("age",
 	 * "18").sign(Algorithm.HMAC256("secret"));// 加密 return token; }
 	 */
-	public static String createToken() throws Exception {
+	public static String createToken(SysUser user) throws Exception {
 		// 签发时间
 		Date iatDate = new Date();
 
@@ -38,8 +40,9 @@ public class JwtToken {
 		String token = "";
 		try {
 			token = JWT.create().withHeader(map)// header
-					.withClaim("name", "张三").withClaim("age", "28").withClaim("org", "执法人员").withExpiresAt(expiresDate)
-					.withIssuedAt(iatDate).sign(Algorithm.HMAC256(SECRET));// 加密
+					.withClaim("name", user.getUsername()).withClaim("userType", user.getUsertype())
+					.withClaim("loginame", user.getLoginname()).withExpiresAt(expiresDate).withIssuedAt(iatDate)
+					.sign(Algorithm.HMAC256(SECRET));// 加密
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

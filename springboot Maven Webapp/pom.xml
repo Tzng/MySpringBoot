@@ -13,7 +13,7 @@
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  	
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  	<java.version>10</java.version>
+  	<java.version>1.8</java.version>
   </properties>	
 	
 	<!-- 继承父包 -->
@@ -44,11 +44,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- 入模板引擎jar包 -->
-<!-- 		<dependency>
-		   <groupId>org.springframework.boot</groupId>
-		   <artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>     -->    
 
 		<!-- 是项目中用来处理常用的编码方法的工具类包，例如DES、SHA1、MD5、Base64，URL，Soundx等等。不仅是编码，也可用于解码。 -->
 		<dependency>
@@ -107,7 +102,7 @@
         	<groupId>com.github.pagehelper</groupId>
         	<artifactId>pagehelper-spring-boot-starter</artifactId>
         	<version>1.2.5</version>
-        </dependency>
+        </dependency>	
 
 		<!-- alibaba的druid数据库连接池 -->
 		<dependency>
@@ -153,35 +148,31 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			</dependency>
+		</dependency>
+		<!-- 百度文字识别 -->
+		<dependency>
+		    <groupId>com.baidu.aip</groupId>
+		    <artifactId>java-sdk</artifactId>
+		    <version>4.2.0</version>
+		</dependency>			    
+	    
 	</dependencies>
 	
     <build>
         <finalName>maventest</finalName>
 	    <plugins>
-	        <plugin>
-	            <groupId>org.springframework.boot</groupId>
-	            <artifactId>spring-boot-maven-plugin</artifactId>
-	            <executions>
-	                <execution>
-	                    <goals>
-	                        <goal>repackage</goal>
-	                    </goals>
-	                </execution>
-	            </executions>
-	        </plugin>
             <!-- Spring Boot Maven插件 -->
-            <plugin>
+<!--             <plugin>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin </artifactId>               
+                <artifactId>spring-boot-maven-plugin </artifactId>
 				<executions>
 					<execution>
 						<goals>
-							<goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中 -->
+							<goal>repackage</goal>可以把依赖的包都打包到生成的Jar包中
 						</goals>
 					</execution>
 				</executions>
-            </plugin>
+            </plugin> -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin </artifactId>
@@ -190,19 +181,19 @@
 					<fork>true</fork>
 					<addResources>true</addResources>
 				</configuration>                
-            </plugin>            
+            </plugin>              
 		    <!--
 		        指定maven插件编译版本
 		        1：maven：since2.0, 默认用jdk1.3来编译，maven 3.x 貌似是默认用jdk 1.5。 
 		        2：windows默认使用GBK编码，java项目经常编码为utf8，也需要在compiler插件中指出，否则中文乱码可能会出现编译错误。 
 		     -->
-<!--             <plugin>
+            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>10</source>
-                    <target>10</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
-            </plugin> -->
+            </plugin>
 <!--             使用maven-war-plugin 对Maven项目进行动态打包 https://segmentfault.com/a/1190000007166005
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.myl.springboot.mapper.SysUserMapper">
+  <resultMap id="BaseResultMap" type="team.myl.springboot.model.SysUser">
+    <id column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="loginName" jdbcType="VARCHAR" property="loginname" />
+    <result column="passWord" jdbcType="VARCHAR" property="password" />
+    <result column="userType" jdbcType="VARCHAR" property="usertype" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="mobilePhone" jdbcType="VARCHAR" property="mobilephone" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="depid" jdbcType="CHAR" property="depid" />
+    <result column="depname" jdbcType="VARCHAR" property="depname" />
+    <result column="creuser" jdbcType="VARCHAR" property="creuser" />
+    <result column="cretime" jdbcType="TIMESTAMP" property="cretime" />
+    <result column="statue" jdbcType="VARCHAR" property="statue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, loginName, passWord, userType, userName, mobilePhone, qq, depid, depname, creuser, 
+    cretime, statue
+  </sql>
+  <select id="loginValidate" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from sys_user
+  	where loginName = #{loginName,jdbcType=VARCHAR} and passWord = #{passWord,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_user
+    where uid = #{uid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="team.myl.springboot.model.SysUser">
+	<selectKey keyProperty="uid" resultType="string" order="BEFORE">    
+		select replace(uuid(), '-', '') as id from dual  
+	</selectKey>  
+    insert into sys_user (uid, loginName, passWord, 
+      userType, userName, mobilePhone, 
+      qq, depid, depname, creuser, 
+      cretime, statue)
+    values (#{uid,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{usertype,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{mobilephone,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{depid,jdbcType=CHAR}, #{depname,jdbcType=VARCHAR}, #{creuser,jdbcType=VARCHAR}, 
+      #{cretime,jdbcType=TIMESTAMP}, #{statue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="team.myl.springboot.model.SysUser">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="loginname != null">
+        loginName,
+      </if>
+      <if test="password != null">
+        passWord,
+      </if>
+      <if test="usertype != null">
+        userType,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="mobilephone != null">
+        mobilePhone,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="depid != null">
+        depid,
+      </if>
+      <if test="depname != null">
+        depname,
+      </if>
+      <if test="creuser != null">
+        creuser,
+      </if>
+      <if test="cretime != null">
+        cretime,
+      </if>
+      <if test="statue != null">
+        statue,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="loginname != null">
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilephone != null">
+        #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null">
+        #{depid,jdbcType=CHAR},
+      </if>
+      <if test="depname != null">
+        #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="creuser != null">
+        #{creuser,jdbcType=VARCHAR},
+      </if>
+      <if test="cretime != null">
+        #{cretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statue != null">
+        #{statue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="team.myl.springboot.model.SysUser">
+    update sys_user
+    <set>
+      <if test="loginname != null">
+        loginName = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        passWord = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null">
+        userType = #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilephone != null">
+        mobilePhone = #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null">
+        depid = #{depid,jdbcType=CHAR},
+      </if>
+      <if test="depname != null">
+        depname = #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="creuser != null">
+        creuser = #{creuser,jdbcType=VARCHAR},
+      </if>
+      <if test="cretime != null">
+        cretime = #{cretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statue != null">
+        statue = #{statue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="team.myl.springboot.model.SysUser">
+    update sys_user
+    set loginName = #{loginname,jdbcType=VARCHAR},
+      passWord = #{password,jdbcType=VARCHAR},
+      userType = #{usertype,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      mobilePhone = #{mobilephone,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      depid = #{depid,jdbcType=CHAR},
+      depname = #{depname,jdbcType=VARCHAR},
+      creuser = #{creuser,jdbcType=VARCHAR},
+      cretime = #{cretime,jdbcType=TIMESTAMP},
+      statue = #{statue,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 下面是自己写的语句 -->
+  
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where uid = #{uid,jdbcType=VARCHAR}
+  </select>
+  
+    <select id="selectByLoginname" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where loginName = #{loginName,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

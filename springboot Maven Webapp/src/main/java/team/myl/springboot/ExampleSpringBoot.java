@@ -3,12 +3,14 @@ package team.myl.springboot;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import team.myl.springboot.filter.ControllerFilter;
 import team.myl.springboot.interceptor.LogHandlerInterceptor;
-import team.myl.springboot.interceptor.MyInterceptor;
 
 @SpringBootApplication
 @MapperScan(value = "team.myl.springboot.mapper")
@@ -28,15 +30,24 @@ public class ExampleSpringBoot {
 		public void addInterceptors(InterceptorRegistry registry) {
 			registry.addInterceptor(new LogHandlerInterceptor());
 		}
-	}
 
-	// mvc控制器
-	// @Configuration
-	static class WebMvcConfigurer extends WebMvcConfigurerAdapter {
-		// 增加拦截器
-		public void addInterceptors(InterceptorRegistry registry) {
-			registry.addInterceptor(new MyInterceptor()) // 指定拦截器类
-					.addPathPatterns("/user"); // 指定该类拦截的url
+		/**
+		 * <p>
+		 * 描述: 注册过滤器
+		 * </p>
+		 * 
+		 * @return FilterRegistrationBean 返回类型
+		 * @author: tangbin
+		 * @version: V1.0
+		 * @Date: 2018年4月30日 上午9:39:31
+		 */
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		@Bean
+		public FilterRegistrationBean myFilter() {
+			FilterRegistrationBean myFilter = new FilterRegistrationBean();
+			myFilter.addUrlPatterns("/*");
+			myFilter.setFilter(new ControllerFilter());
+			return myFilter;
 		}
 	}
 }

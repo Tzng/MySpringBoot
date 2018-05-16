@@ -1,4 +1,4 @@
-package team.myl.springboot.utilbean;
+package team.myl.springboot.util.bean;
 
 import java.io.Serializable;
 import java.util.List;

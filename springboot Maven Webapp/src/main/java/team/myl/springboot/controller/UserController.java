@@ -22,8 +22,7 @@ import com.github.pagehelper.PageInfo;
 
 import team.myl.springboot.model.User;
 import team.myl.springboot.service.UserService;
-import team.myl.springboot.util.JwtToken;
-import team.myl.springboot.utilbean.PageBean;
+import team.myl.springboot.util.bean.PageBean;
 
 /**
  * 在控制器中接收参数的方法查看这个链接 https://www.cnblogs.com/wxwBlog/p/6128882.html
@@ -177,13 +176,6 @@ public class UserController {
 	@GetMapping("/MyHtml")
 	public String toMyHtml() {
 		return "MyHtml"; // 当浏览器输入/index时，会返回 /static/home.html的页面
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/tzngToken")
-	public String tzngToken() throws Exception {
-		String token = JwtToken.createToken();
-		return token;
 	}
 
 	@ResponseBody

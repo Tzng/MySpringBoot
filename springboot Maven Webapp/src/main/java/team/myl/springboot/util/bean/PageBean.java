@@ -1,7 +1,4 @@
-package team.myl.springboot.utilbean;
-/**
- * 分页bean
- */
+package team.myl.springboot.util.bean;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -9,6 +6,19 @@ import java.util.List;
 
 import com.github.pagehelper.Page;
 
+/**
+ * <p>
+ * 标题：PageBean
+ * </p>
+ * <p>
+ * 描述：分页的实体类
+ * </p>
+ * 
+ * @data 2018年5月1日 下午10:53:02
+ * @author tangbin
+ * @version
+ * @param <T>
+ */
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class PageBean<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
