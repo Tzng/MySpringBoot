@@ -20,7 +20,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import team.myl.springboot.model.SysUser;
 import team.myl.springboot.model.User;
+import team.myl.springboot.service.SysUserService;
 import team.myl.springboot.service.UserService;
 import team.myl.springboot.util.bean.PageBean;
 
@@ -34,6 +36,12 @@ import team.myl.springboot.util.bean.PageBean;
 @RequestMapping(value = "/user/api", produces = { "application/json;charset=UTF-8" })
 public class UserController {
 
+	protected static final String TOKEN_ERROR = "{\"state\":\"error\",\"mess\":\"tokenerror\"}";
+	protected static final String IS_SUCCESS = "{\"state\":\"success\",\"mess\":\"ok\"}";
+	protected static final String IS_ERROR = "{\"state\":\"error\",\"mess\":\"fail\"}";
+
+	@Autowired
+	private SysUserService SysUserService;
 	@Autowired
 	private UserService userService;
 
@@ -185,4 +193,19 @@ public class UserController {
 		return userData;
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/addUser")
+	public String addUser(String username, String password, String loginname) {
+		SysUser user = new SysUser();
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setLoginname(loginname);
+		user.setUsertype("zhzx");
+		Boolean flag = SysUserService.addUser(user);
+		if (flag) {
+			return IS_SUCCESS;
+		} else {
+			return IS_ERROR;
+		}
+	}
 }
